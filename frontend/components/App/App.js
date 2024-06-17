@@ -13,15 +13,26 @@ import SearchBar from '../SearchBar/SearchBar'
 import dummyData from '../../data/dummy-data'
 
 const App = () => {
-  const [posts,setPosts]=useState(dummyData)
   // Create a state called `posts` to hold the array of post objects, **initializing to dummyData**.
   // This state is the source of truth for the data inside the app. You won't be needing dummyData anymore.
   // To make the search bar work (which is stretch) we'd need another state to hold the search term.
+  const [posts,setPosts]=useState(dummyData)
   const [searchTerm, setSearchTerm]=useState('')
+
   const likePost = postId => {
+    // console.log(postId)
 
-    // console.log(posts.props);
-
+    const newPosts = posts.map(ps=>{
+      if(ps.id===postId){
+        return{
+          ...ps,
+          likes: ps.likes+1
+        }
+      }else{
+        return ps;
+      }
+    })
+    setPosts(newPosts);
     /*
       This function serves the purpose of increasing the number of likes by one, of the post with a given id.
 

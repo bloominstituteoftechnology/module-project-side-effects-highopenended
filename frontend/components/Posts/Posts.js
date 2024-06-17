@@ -8,7 +8,6 @@ const Posts = (props) => {
   return (
     <div className='posts-container-wrapper'>
       {posts.map(ps=>{
-        console.log(ps)
         return <Post key={ps.id} post={ps} likePost={likePost}/>
       })}
 
